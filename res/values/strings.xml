@@ -2,6 +2,8 @@
 <resources>
 
     <string name="app_name">MistBenchmark</string>
-    <string name="title_case_detail">Case Detail</string>
+    <string name="title_activity_location">Location Service Test</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main">MistBenchmark</string>
 
 </resources>

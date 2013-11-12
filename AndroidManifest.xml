@@ -7,28 +7,28 @@
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="18" />
-
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+	<uses-permission android:name="android.permission.INTERNET" />    
+	<uses-permission android:name="android.permission.WAKE_LOCK"/>
+	
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/mist_logo"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="edu.wayne.mist.benchmark.CaseListActivity"
-            android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:name="edu.wayne.mist.benchmark.activity.MainActivity"
+            android:label="@string/title_activity_main" 
+            android:screenOrientation="portrait" >
+	        <intent-filter>
+	            <action android:name="android.intent.action.MAIN" />
+	            <category android:name="android.intent.category.LAUNCHER" />
+	        </intent-filter>            
         </activity>
         <activity
-            android:name="edu.wayne.mist.benchmark.CaseDetailActivity"
-            android:label="@string/title_case_detail"
-            android:parentActivityName=".CaseListActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".CaseListActivity" />
+            android:name="edu.wayne.mist.benchmark.activity.LocationActivity"
+            android:label="@string/title_activity_location" 
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
