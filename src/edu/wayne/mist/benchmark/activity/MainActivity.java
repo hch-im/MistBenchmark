@@ -19,7 +19,9 @@ public class MainActivity extends ListActivity{
 	private static HashMap<String, Class> cases = new HashMap<String, Class>();
 	static{
 		cases.put("Location Service", LocationActivity.class);
+		cases.put("SensorHub Test", SensorActivity.class);		
 	}
+	
 	private ArrayAdapter adapter;
 	private Object[] items;
 	

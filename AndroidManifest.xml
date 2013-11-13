@@ -7,10 +7,11 @@
     <uses-sdk
         android:minSdkVersion="16"
         android:targetSdkVersion="18" />
-	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-	<uses-permission android:name="android.permission.INTERNET" />    
-	<uses-permission android:name="android.permission.WAKE_LOCK"/>
-	
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/mist_logo"
@@ -18,17 +19,23 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="edu.wayne.mist.benchmark.activity.MainActivity"
-            android:label="@string/title_activity_main" 
+            android:label="@string/title_activity_main"
             android:screenOrientation="portrait" >
-	        <intent-filter>
-	            <action android:name="android.intent.action.MAIN" />
-	            <category android:name="android.intent.category.LAUNCHER" />
-	        </intent-filter>            
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="edu.wayne.mist.benchmark.activity.LocationActivity"
-            android:label="@string/title_activity_location" 
-            android:screenOrientation="portrait">
+            android:label="@string/title_activity_location"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="edu.wayne.mist.benchmark.activity.SensorActivity"
+            android:label="@string/title_activity_sensor"
+            android:screenOrientation="portrait" >
         </activity>
     </application>
 
