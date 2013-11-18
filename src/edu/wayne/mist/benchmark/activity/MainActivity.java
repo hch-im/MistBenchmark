@@ -20,6 +20,7 @@ public class MainActivity extends ListActivity{
 	static{
 		cases.put("Location Service", LocationActivity.class);
 		cases.put("SensorHub Test", SensorActivity.class);		
+		cases.put("Wifi Info", WifiInfoActivity.class);				
 	}
 	
 	private ArrayAdapter adapter;
