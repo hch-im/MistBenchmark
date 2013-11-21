@@ -5,7 +5,12 @@ import edu.wayne.mist.benchmark.service.MyLocationService;
 import android.location.Location;
 import android.location.LocationListener;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -23,7 +28,7 @@ public class LocationActivity extends Activity {
 	private SeekBar accuBar = null;
 	private Button start = null;
 	private MyLocationService locationService = null;
-	
+	private Context mContext;
 	int providerMode = 0;
 	int usageMode = 0;
 	int accuracy = 50;
@@ -34,6 +39,8 @@ public class LocationActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		this.mContext = this.getBaseContext();
+		
 		setContentView(R.layout.activity_location);
 		provider = (RadioGroup) findViewById(R.id.myRadioGroup);
 		provider.check(R.id.radioButtonGPS);
@@ -80,9 +87,22 @@ public class LocationActivity extends Activity {
 				start.setText("Get Location ...");
 				start.setEnabled(false);
 				updateTimes = 0;
+			}else{
+				showAlert();
 			}
 		}
 	};
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+	    super.onActivityResult(requestCode, resultCode, data);
+	    if (resultCode == 1) {
+	       switch (requestCode) {
+	          case 1:
+	           break;
+	        }
+	     }  
+	 }
 	
 	private SeekBar.OnSeekBarChangeListener seekListener = new SeekBar.OnSeekBarChangeListener() {
 		
@@ -152,4 +172,30 @@ public class LocationActivity extends Activity {
 
 		}
 	};
+	
+	public void showAlert(){
+		try{
+	        AlertDialog.Builder alertDialog = new AlertDialog.Builder(LocationActivity.this);
+	        alertDialog.setTitle("Location Service");
+	        alertDialog.setMessage("Please enable location service.");
+	  
+	        alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+	            public void onClick(DialogInterface dialog,int which) {
+//	                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+//	                mContext.startActivity(intent);
+					startActivityForResult(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS), 1);
+	            }
+	        });
+	  
+	        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+	            public void onClick(DialogInterface dialog, int which) {
+	            dialog.cancel();
+	            }
+	        });
+	  
+	        alertDialog.show();
+		}catch(Exception ex){
+			ex.printStackTrace();
+		}
+    }		
 }

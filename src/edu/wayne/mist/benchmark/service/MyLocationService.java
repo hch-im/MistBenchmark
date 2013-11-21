@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.provider.Settings;
 import android.util.Log;
+import android.view.ContextThemeWrapper;
 
 public class MyLocationService extends Service implements LocationListener {
 	private static final String tag = "MyLocationService";
@@ -45,8 +46,8 @@ public class MyLocationService extends Service implements LocationListener {
             locationManager = (LocationManager) mContext.getSystemService(LOCATION_SERVICE);
         	boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
             boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);    	
-            if (!isGPSEnabled || !isNetworkEnabled) {
-            	showAlert();
+            if (!isGPSEnabled || !isNetworkEnabled) {            	
+            	Log.d(tag, " location service not enabled gps:" + isGPSEnabled + " network: " + isNetworkEnabled);
             	return false;
             }
             
@@ -106,27 +107,6 @@ public class MyLocationService extends Service implements LocationListener {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	public void showAlert(){
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
-        alertDialog.setTitle("Location Service");
-        alertDialog.setMessage("Please enable location service.");
-  
-        alertDialog.setPositiveButton("Settings", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog,int which) {
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                mContext.startActivity(intent);
-            }
-        });
-  
-        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-            dialog.cancel();
-            }
-        });
-  
-        alertDialog.show();
-    }	
 	
 	public void removeListener(LocationListener listener){
 		if(locationManager != null)
