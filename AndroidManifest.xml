@@ -2,8 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.wayne.mist.benchmark"
     android:versionCode="1"
-    android:versionName="1.0" 
-    >
+    android:versionName="1.0" >
 
     <uses-sdk
         android:minSdkVersion="16"
@@ -12,9 +11,11 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />    
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />        
-	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/mist_logo"
@@ -33,7 +34,7 @@
         <activity
             android:name="edu.wayne.mist.benchmark.activity.LocationActivity"
             android:label="@string/title_activity_location"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name="edu.wayne.mist.benchmark.activity.SensorActivity"
@@ -44,6 +45,14 @@
             android:name="edu.wayne.mist.benchmark.activity.WifiInfoActivity"
             android:label="@string/title_activity_wifi_info"
             android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="edu.wayne.mist.benchmark.activity.SqliteActivity"
+            android:label="@string/title_activity_sqlite" >
+        </activity>
+        <activity
+            android:name="edu.wayne.mist.benchmark.activity.CacheActivity"
+            android:label="@string/title_activity_cpu" >
         </activity>
     </application>
 
