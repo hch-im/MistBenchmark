@@ -10,5 +10,6 @@
     <string name="title_activity_wifi_info">WifiInfoActivity</string>
     <string name="title_activity_sqlite">SqliteActivity</string>
     <string name="title_activity_cpu">CPUActivity</string>
+    <string name="title_activity_screen">ScreenActivity</string>
 
 </resources>

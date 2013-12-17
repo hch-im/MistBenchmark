@@ -15,7 +15,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/mist_logo"
@@ -48,11 +49,18 @@
         </activity>
         <activity
             android:name="edu.wayne.mist.benchmark.activity.SqliteActivity"
-            android:label="@string/title_activity_sqlite" >
+            android:label="@string/title_activity_sqlite" 
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="edu.wayne.mist.benchmark.activity.CacheActivity"
-            android:label="@string/title_activity_cpu" >
+            android:label="@string/title_activity_cpu" 
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name="edu.wayne.mist.benchmark.activity.ScreenActivity"
+            android:label="@string/title_activity_screen" 
+            android:screenOrientation="portrait">
         </activity>
     </application>
 
