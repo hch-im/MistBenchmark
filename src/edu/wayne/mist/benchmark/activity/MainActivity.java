@@ -23,7 +23,8 @@ public class MainActivity extends ListActivity{
 		cases.put("Wifi Info", WifiInfoActivity.class);	
 		cases.put("Sqlite", SqliteActivity.class);
 		cases.put("Cache", CacheActivity.class);		
-		cases.put("Screen", ScreenActivity.class);		
+		cases.put("Screen", ScreenActivity.class);	
+		cases.put("Calculator", CalculatorActivity.class);	
 	}
 	
 	private ArrayAdapter adapter;

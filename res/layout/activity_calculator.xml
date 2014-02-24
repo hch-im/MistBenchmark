@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+    
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ScrollView01"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+<!--  <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity" >
+    -->
+    <RelativeLayout 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+     >
+
+    <Button
+        android:id="@+id/startPi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/editText1"
+        android:layout_alignTop="@+id/editText1"
+        android:layout_toRightOf="@+id/editText1"
+        android:text="Calculate Pi" />
+
+    <EditText
+        android:id="@+id/thread"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/startPi"
+        android:layout_below="@+id/startPi"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="number" />
+
+    <EditText
+        android:id="@+id/digits"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/startPi"
+        android:layout_below="@+id/thread"
+        android:layout_marginTop="31dp"
+        android:ems="10"
+        android:hint="1000"
+        android:inputType="number" >
+
+       
+    </EditText>
+    
+ 
+    
+     <EditText android:id = "@+id/A"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/digits"
+        android:layout_marginLeft="40dp"
+        android:hint="Number A"
+       
+         />
+    
+     <EditText android:id="@+id/B"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/A"
+        android:layout_marginLeft="40dp"
+        android:hint="Number b"
+        />
+    
+    <Button
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_below="@id/B"
+        android:text="Add" />
+    
+    <TextView android:id="@+id/Re1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/add"
+        android:layout_below="@id/B"    
+        android:layout_marginTop="12dp"   
+        android:layout_marginLeft="40dp"
+        />
+    
+   
+    
+    <Button
+        android:id="@+id/min"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_below="@id/add"
+        android:text="Minus" />
+    
+     <TextView android:id="@+id/Re2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/min"
+        android:layout_below="@id/Re1"
+        android:layout_marginTop="25dp"  
+        android:layout_marginLeft="40dp"
+        /> 
+     
+   
+  <Button
+        android:id="@+id/mul"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_below="@id/min"
+        android:text="Multiply" />
+    
+     <TextView android:id="@+id/Re3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/mul"
+        android:layout_below="@id/Re2"
+        android:layout_marginTop="30dp"  
+        android:layout_marginLeft="40dp"
+        />
+    
+   
+   <Button
+        android:id="@+id/div"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dip"
+        android:layout_below="@id/mul"
+        android:text="Division" />
+    
+     <TextView android:id="@+id/Re4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/div"
+        android:layout_below="@id/Re3"
+        android:layout_marginTop="35dp"  
+        android:layout_marginLeft="40dp"
+        />
+     
+        <TextView
+        android:id="@+id/main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:singleLine="false"   
+    	android:scrollbars="vertical"
+    	android:layout_below="@+id/div"
+        android:textSize="20sp" />
+
+	</RelativeLayout>
+
+    </ScrollView>
+    
+    

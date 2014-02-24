@@ -62,6 +62,11 @@
             android:label="@string/title_activity_screen" 
             android:screenOrientation="portrait">
         </activity>
+        <activity
+            android:name="edu.wayne.mist.benchmark.activity.CalculatorActivity"
+            android:label="@string/title_activity_calculator"
+            android:screenOrientation="portrait" >
+        </activity>
     </application>
 
 </manifest>
