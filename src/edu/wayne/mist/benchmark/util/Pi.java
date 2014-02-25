@@ -1,25 +1,8 @@
-package edu.wayne.mist.benchmark.activity;
-
+package edu.wayne.mist.benchmark.util;
 
 import java.math.BigDecimal;
 
 public class Pi {
-    public static void main(String args[]) throws NumberFormatException {
-        int digits = Integer.parseInt(args[0]);
-        String pi = computePi(digits).toString();
-        int freq[] = new int[10];
-        for(int i = 0;i < 10;i++) freq[i] = 0;
-        int c;
-        for(int i = 0;i < pi.length();i++) {
-            c = pi.charAt(i);
-            if(c == '.') continue;
-            c -= '0';
-            freq[c]++;
-        }
-        for(int i = 0;i < 10;i++) {
-            System.out.println("" + i + " " + freq[i]);
-        }
-    }
     /** constants used in pi computation */
     private static final BigDecimal FOUR = BigDecimal.valueOf(4);
 

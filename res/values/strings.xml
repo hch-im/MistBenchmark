@@ -12,5 +12,7 @@
     <string name="title_activity_cpu">CPUActivity</string>
     <string name="title_activity_screen">ScreenActivity</string>
     <string name="title_activity_calculator">CalculatorActivity</string>
+    <string name="title_activity_picalculator">PICalculatorActivity</string>
+    <string name="title_activity_math">MathActivity</string>
 
 </resources>
