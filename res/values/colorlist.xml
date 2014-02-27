@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="colorlist"> 
+<item >white</item> 
+<item >yellow</item> 
+<item >silver</item> 
+<item >green</item> 
+<item >blue</item> 
+<item >purple</item> 
+<item >black</item> 
+</string-array> 
+    
+</resources>
