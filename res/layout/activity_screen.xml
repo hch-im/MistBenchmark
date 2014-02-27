@@ -53,5 +53,23 @@
         android:layout_marginTop="23dp"
         android:text="Status:"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+    
+    <TextView 
+        android:id="@+id/tv" 
+	android:layout_width="fill_parent" 
+	android:layout_height="wrap_content" 
+	android:layout_below="@+id/brightnessTextView"
+	android:layout_marginTop="32dp"
+	android:text="Select Background Color:"/>
+
+	<Spinner 
+	android:id="@+id/spinner" 
+	android:layout_width="fill_parent" 
+	android:layout_height="wrap_content" 
+	android:layout_below="@+id/tv"
+	android:layout_marginTop="23dp"
+	android:prompt="@string/spinner_title" 
+	android:drawSelectorOnTop = "true"/> 
+
 
 </RelativeLayout>

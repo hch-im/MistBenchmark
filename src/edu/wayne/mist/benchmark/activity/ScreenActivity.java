@@ -7,18 +7,28 @@ import android.provider.Settings;
 import android.provider.Settings.SettingNotFoundException;
 import android.app.Activity;
 import android.content.ContentResolver;
+import android.graphics.Color;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ScreenActivity extends Activity {
 	private TextView symbol;
 	private Button cal;
 	private EditText input;
+	public View rootView;
+	
+	private String[] colorlist;
+	private String[] colorcodes;
 	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -29,12 +39,29 @@ public class ScreenActivity extends Activity {
         cal = (Button)findViewById(R.id.brightnessButton);
         input = (EditText)findViewById(R.id.brightnessEditText);
         
+        
         cal.setOnClickListener(clickListener);
         
         int original = getScreenBrightness();
         symbol.setText("The brightness is " + original);
         
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        
+        rootView = symbol.getRootView();
+        
+        Spinner spinner = (Spinner) findViewById(R.id.spinner);
+        
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource( 
+        		this, R.array.colorlist, android.R.layout.simple_spinner_item);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); 
+        spinner.setAdapter(adapter);
+        
+        spinner.setOnItemSelectedListener(selectListenner);
+
+        
+        		
+        		
 	}
 
 	@Override
@@ -42,6 +69,32 @@ public class ScreenActivity extends Activity {
 		getMenuInflater().inflate(R.menu.screen, menu);
 		return true;
 	}
+	
+	private OnItemSelectedListener selectListenner = new OnItemSelectedListener(){
+		 public void onItemSelected(AdapterView<?> arg0, View arg1, 
+			        int arg2, long arg3)
+
+			        {
+
+			        int index = arg0.getSelectedItemPosition();
+
+			        // storing string resources into Array 
+			        colorlist = getResources().getStringArray(R.array.colorlist);
+			        colorcodes = getResources().getStringArray(R.array.colorcode);
+			        
+			       // Color.parseColor(colorcodes[index]);
+
+			        rootView.setBackgroundColor(Color.parseColor(colorcodes[index]));
+			       
+			        }
+
+			        public void onNothingSelected(AdapterView<?> arg0) { 
+			        // do nothing
+
+			        }
+
+			        
+	};
 	
 	
 	private OnClickListener clickListener = new OnClickListener()
