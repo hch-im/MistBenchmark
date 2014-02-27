@@ -53,6 +53,8 @@ public class PICalculatorActivity extends Activity {
             	
             	threadNum = Integer.valueOf(thread.getText().toString());
             	digitsNum = Integer.valueOf(digits.getText().toString());
+            	if(digitsNum > 100000) digitsNum = 100000;
+            	
 	       		st.setText("Calculating...");
 	       		finishedNum = 0;
 	       		
