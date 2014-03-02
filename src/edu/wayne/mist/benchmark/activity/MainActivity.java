@@ -23,6 +23,7 @@ public class MainActivity extends ListActivity{
 		cases.put("Wifi Info", WifiInfoActivity.class);	
 		cases.put("Sqlite", SqliteActivity.class);
 		cases.put("Screen", ScreenActivity.class);	
+		cases.put("WakeLock", WakeLockActivity.class);	
 	}
 	
 	@SuppressWarnings("rawtypes")

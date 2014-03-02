@@ -77,6 +77,11 @@
             android:label="@string/title_activity_math" 
             android:screenOrientation="portrait">
         </activity>
+         <activity
+            android:name="edu.wayne.mist.benchmark.activity.WakeLockActivity"
+            android:label="@string/title_activity_wakelock" 
+            android:screenOrientation="portrait">
+        </activity>
     </application>
 
 </manifest>
