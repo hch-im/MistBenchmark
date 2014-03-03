@@ -14,7 +14,8 @@
     <string name="title_activity_calculator">CalculatorActivity</string>
     <string name="title_activity_picalculator">PICalculatorActivity</string>
     <string name="title_activity_math">MathActivity</string>
-    <string name="spinner_title">Select Background Color</string> 
+    <string name="spinner_title">Select Background Color</string>
     <string name="title_activity_wakelock">WakeLockActivity</string>
+    <string name="title_activity_prime">PrimeActivity</string>
 
 </resources>

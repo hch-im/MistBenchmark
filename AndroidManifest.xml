@@ -74,13 +74,17 @@
         </activity>
         <activity
             android:name="edu.wayne.mist.benchmark.activity.MathActivity"
-            android:label="@string/title_activity_math" 
-            android:screenOrientation="portrait">
+            android:label="@string/title_activity_math"
+            android:screenOrientation="portrait" >
         </activity>
-         <activity
+        <activity
             android:name="edu.wayne.mist.benchmark.activity.WakeLockActivity"
-            android:label="@string/title_activity_wakelock" 
-            android:screenOrientation="portrait">
+            android:label="@string/title_activity_wakelock"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="edu.wayne.mist.benchmark.PrimeActivity"
+            android:label="@string/title_activity_prime" >
         </activity>
     </application>
 
