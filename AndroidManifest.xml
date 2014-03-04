@@ -83,7 +83,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="edu.wayne.mist.benchmark.PrimeActivity"
+            android:name="edu.wayne.mist.benchmark.activity.PrimeActivity"
             android:label="@string/title_activity_prime" >
         </activity>
     </application>

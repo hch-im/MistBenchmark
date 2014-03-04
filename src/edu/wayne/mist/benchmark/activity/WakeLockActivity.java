@@ -28,14 +28,16 @@ public class WakeLockActivity extends Activity {
 				if(wakelockAcquired == false){
 	            	wakeLock = mgr.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "MyPartialWakeLock");
 	            	wakeLock.acquire();
-	            	Log.i("wakelock", "partialwakelock start");
+	            	Log.i("Mist", "partialwakelock start");
 	            	wakelockAcquired = true;
-	            	st.setText("Release");
+	            	st.setText("Release Partial Wakelock");
 				}else{
-					if(wakeLock != null) wakeLock.release();
-					wakelockAcquired = false;
-					st.setText("Acquire");
-					Log.i("wakelock", "partialwakelock release");
+					if(wakeLock != null  && wakeLock.isHeld()){ 
+						wakeLock.release();
+						wakelockAcquired = false;
+						st.setText("Acquire Partial Wakelock");
+						Log.i("Mist", "partialwakelock release");
+					}
 				}
             }
         }); 
@@ -44,8 +46,10 @@ public class WakeLockActivity extends Activity {
 	@SuppressLint("Wakelock")
 	@Override
 	protected void onDestroy() {
-		wakeLock.release();
-		Log.i("wakelock", "partialwakelock release");
+		if(wakeLock != null && wakeLock.isHeld()){
+			wakeLock.release();
+			Log.i("wakelock", "partialwakelock release");
+		}
 		super.onDestroy();
 	}
 	

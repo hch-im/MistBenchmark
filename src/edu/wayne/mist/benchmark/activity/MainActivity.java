@@ -18,6 +18,7 @@ public class MainActivity extends ListActivity{
 		cases.put("Cache", CacheActivity.class);		
 		cases.put("Math", MathActivity.class);		
 		cases.put("PI Calculator", PICalculatorActivity.class);					
+		cases.put("Prime", PrimeActivity.class);							
 		cases.put("Location Service", LocationActivity.class);
 		cases.put("SensorHub Test", SensorActivity.class);		
 		cases.put("Wifi Info", WifiInfoActivity.class);	
