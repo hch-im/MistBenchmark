@@ -86,6 +86,8 @@
             android:name="edu.wayne.mist.benchmark.activity.PrimeActivity"
             android:label="@string/title_activity_prime" >
         </activity>
+        <receiver android:name="WiFiStatusReceiver" >
+        </receiver>
     </application>
 
 </manifest>
