@@ -4,15 +4,25 @@ import java.math.BigInteger;
 import java.net.InetAddress;
 
 import edu.wayne.mist.benchmark.R;
+import edu.wayne.mist.benchmark.broadcastReceiver.WiFiStatusReceiver;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.view.Menu;
 import android.widget.EditText;
 
+/**
+ * @author power_hz
+ *
+ */
 public class WifiInfoActivity extends Activity {
+	
+	IntentFilter mIntentFilter = new IntentFilter();
+	WiFiStatusReceiver mReceiver = new WiFiStatusReceiver();
+	 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +48,38 @@ public class WifiInfoActivity extends Activity {
 		}else{
 			text.setText("Cannot acquire wifi information!");
 		}
+		
+		 mIntentFilter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
+		  mIntentFilter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
+		  mIntentFilter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
+		  mIntentFilter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
+		  registerReceiver(mReceiver, mIntentFilter);
 	}
+	
+
+
+	@Override
+	protected void onDestroy() {
+		// TODO Auto-generated method stub
+		unregisterReceiver(mReceiver);
+		super.onDestroy();
+	}
+
+
+
+	@Override
+	protected void onResume() {
+		// TODO Auto-generated method stub
+		super.onResume();
+		mIntentFilter.addAction(WifiManager.SCAN_RESULTS_AVAILABLE_ACTION);
+		  mIntentFilter.addAction(WifiManager.NETWORK_STATE_CHANGED_ACTION);
+		  mIntentFilter.addAction(WifiManager.WIFI_STATE_CHANGED_ACTION);
+		  mIntentFilter.addAction(WifiManager.SUPPLICANT_STATE_CHANGED_ACTION);
+		  registerReceiver(mReceiver, mIntentFilter);
+		
+	}
+
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
