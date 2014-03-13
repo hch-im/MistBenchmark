@@ -26,6 +26,7 @@ public class MainActivity extends ListActivity{
 		cases.put("Sqlite", SqliteActivity.class);
 		cases.put("Screen", ScreenActivity.class);	
 		cases.put("WakeLock", WakeLockActivity.class);	
+		cases.put("Socket", SocketClient.class);			
 	}
 	
 	@SuppressWarnings("rawtypes")

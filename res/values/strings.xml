@@ -18,5 +18,6 @@
     <string name="title_activity_wakelock">WakeLockActivity</string>
     <string name="title_activity_prime">PrimeActivity</string>
     <string name="title_activity_net">NetActivity</string>
+    <string name="title_activity_socketclient">Socket</string>
 
 </resources>

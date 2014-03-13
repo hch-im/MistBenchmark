@@ -90,6 +90,10 @@
             android:name="edu.wayne.mist.benchmark.activity.NetActivity"
             android:label="@string/title_activity_net" >
         </activity>
+        <activity
+            android:name="edu.wayne.mist.benchmark.activity.SocketClient"
+            android:label="@string/title_activity_socketclient" >
+        </activity>        
         <receiver android:name="WiFiStatusReceiver" >
         </receiver>
     </application>
