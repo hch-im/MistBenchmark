@@ -36,6 +36,7 @@ public class SocketClient extends Activity {
     private EditText mReceiverSize = null; 
     private EditText mSendSize = null;
     private EditText mDelay = null;
+    private EditText mFreq = null;
     private TextView tx1 = null;  
     private Button mButton = null;  
     
@@ -48,6 +49,7 @@ public class SocketClient extends Activity {
     Socket socket;
     int len = 0;
     private TCPClient mTcpClient;
+    private connectTask cTask;
  
     
    
@@ -74,11 +76,27 @@ public class SocketClient extends Activity {
 	    eventHandler.removeCallbacks(eventPeriodicTask);
 	    if(mTcpClient!=null)
 	    	mTcpClient.stopClient();
-	
+	    cTask.cancel(true);
 	    super.onDestroy();
 	}
 
-      
+	@Override
+	public void onPause() {  
+		state  =  false;
+	    //eventHandler.removeCallbacks(eventPeriodicTask);
+	    if(mTcpClient!=null)
+	    	mTcpClient.stopClient();
+	    cTask.cancel(true);
+	    super.onPause();
+	}
+    
+	@Override
+	public void onResume() {  
+		super.onResume();
+	   state = true;
+	    
+	}
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -88,11 +106,12 @@ public class SocketClient extends Activity {
 		mReceiverSize = (EditText) findViewById(R.id.ReceiveSize);
 		mSendSize = (EditText) findViewById(R.id.SendSize);
 		mDelay = (EditText) findViewById(R.id.Delay);
+		mFreq = (EditText) findViewById(R.id.Freq);
 		
 
 		tx1 = (TextView) findViewById(R.id.tx);
 		
-		Enumeration<NetworkInterface> interfaces = null;
+	/*	Enumeration<NetworkInterface> interfaces = null;
 	    try {
 	        //the WiFi network interface will be one of these.
 	        interfaces = NetworkInterface.getNetworkInterfaces();
@@ -103,33 +122,54 @@ public class SocketClient extends Activity {
 	    } catch (SocketException e) {
 	        
 	    }
-	    
+	    */
+		
 	    NetworkInterface k = getWifiNetworkInterface((WifiManager)getSystemService(Context.WIFI_SERVICE));
 	    Log.d(TAG, "wifi name " + k.getDisplayName());
 		
-        new connectTask().execute("");
+	    cTask = new connectTask();
+        cTask.execute("");
         
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
  
-            	char[] c = new char[1024];
-				for (int i = 0; i < 1024; i++)
-					c[i] = 'h';
+            //	char[] c = new char[1024];
+			//	for (int i = 0; i < 1024; i++)
+			//		c[i] = 'h';
 
 				String content = "";
 				for (int i = 0; i < Integer.valueOf(mSendSize.getText()
 						.toString()); i++)
-					content += String.valueOf(c);
+					content += "h";
 
 				toServer = mReceiverSize.getText().toString() + ":"
 						+ content + '\r' + '\n';
        
 				 if(mDelay!=null)
-                 	period = Integer.valueOf(mDelay.getText().toString());
-					state = true;
+                 	{
+					 period = Integer.valueOf(mDelay.getText().toString());
+					//state = true;
+                 	}
 					
+				 if(mFreq.getText().toString().equalsIgnoreCase("R")){	
+					 state = true;
+					 if(mTcpClient == null)
+						 cTask.execute("");
 					eventHandler.postDelayed(eventPeriodicTask, period);
+					Log.d(TAG,"Periodically");
+					}
+				 else{
+					 if(mFreq.getText().toString().equalsIgnoreCase("O")){
+						 if(mTcpClient == null)
+							 cTask.execute("");
+						 if (mTcpClient != null) {
+			                    mTcpClient.sendMessage(toServer);
+			                   // Log.d(TAG,"mTcpClient is not null");
+			                }
+						 Log.d(TAG,"One time");
+					 }
+				 }
                 
                 
  
