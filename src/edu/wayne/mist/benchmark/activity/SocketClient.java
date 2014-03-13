@@ -93,6 +93,7 @@ public class SocketClient extends Activity {
 	@Override
 	public void onResume() {  
 		super.onResume();
+		
 	   state = true;
 	    
 	}
