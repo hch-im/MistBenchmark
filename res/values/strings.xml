@@ -17,5 +17,6 @@
     <string name="spinner_title">Select Background Color</string>
     <string name="title_activity_wakelock">WakeLockActivity</string>
     <string name="title_activity_prime">PrimeActivity</string>
+    <string name="title_activity_net">NetActivity</string>
 
 </resources>

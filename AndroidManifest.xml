@@ -86,6 +86,10 @@
             android:name="edu.wayne.mist.benchmark.activity.PrimeActivity"
             android:label="@string/title_activity_prime" >
         </activity>
+        <activity
+            android:name="edu.wayne.mist.benchmark.activity.NetActivity"
+            android:label="@string/title_activity_net" >
+        </activity>
     </application>
 
 </manifest>

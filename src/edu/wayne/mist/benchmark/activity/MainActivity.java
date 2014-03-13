@@ -22,6 +22,7 @@ public class MainActivity extends ListActivity{
 		cases.put("Location Service", LocationActivity.class);
 		cases.put("SensorHub Test", SensorActivity.class);		
 		cases.put("Wifi Info", WifiInfoActivity.class);	
+		cases.put("Net Info", NetActivity.class);			
 		cases.put("Sqlite", SqliteActivity.class);
 		cases.put("Screen", ScreenActivity.class);	
 		cases.put("WakeLock", WakeLockActivity.class);	

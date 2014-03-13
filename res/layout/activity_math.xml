@@ -10,7 +10,7 @@
     tools:context=".MathActivity" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/netStateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -23,8 +23,8 @@
         android:id="@+id/maxIterationEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
+        android:layout_alignLeft="@+id/netStateTextView"
+        android:layout_below="@+id/netStateTextView"
         android:layout_marginTop="26dp"
         android:ems="10"
         android:inputType="number"

@@ -10,7 +10,7 @@
     tools:context=".PrimeActivity" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/netStateTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
@@ -24,10 +24,10 @@
         android:id="@+id/primeThreadNumEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignBaseline="@+id/netStateTextView"
+        android:layout_alignBottom="@+id/netStateTextView"
         android:layout_marginLeft="23dp"
-        android:layout_toRightOf="@+id/textView1"
+        android:layout_toRightOf="@+id/netStateTextView"
         android:ems="10"
         android:inputType="number"
         android:text="1" >
@@ -39,7 +39,7 @@
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignLeft="@+id/netStateTextView"
         android:layout_below="@+id/primeThreadNumEditText"
         android:layout_marginTop="19dp"
         android:text="Number of Prime:"
