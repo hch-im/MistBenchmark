@@ -91,11 +91,17 @@
             android:label="@string/title_activity_net" >
         </activity>
         <activity
-            android:name="edu.wayne.mist.benchmark.activity.SocketClient"
+            android:name="edu.wayne.mist.benchmark.activity.SocketActivity"
             android:label="@string/title_activity_socketclient" >
-        </activity>        
-        <receiver android:name="WiFiStatusReceiver" >
+        </activity>
+
+        <receiver android:name="edu.wayne.mist.benchmark.WiFiStatusReceiver" >
         </receiver>
+
+        <activity
+            android:name="edu.wayne.mist.benchmark.activity.SocketClientActivity"
+            android:label="@string/title_activity_server_socket" >
+        </activity>
     </application>
 
 </manifest>

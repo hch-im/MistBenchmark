@@ -19,5 +19,6 @@
     <string name="title_activity_prime">PrimeActivity</string>
     <string name="title_activity_net">NetActivity</string>
     <string name="title_activity_socketclient">Socket</string>
+    <string name="title_activity_server_socket">ServerSocketActivity</string>
 
 </resources>
