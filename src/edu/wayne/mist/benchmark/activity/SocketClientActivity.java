@@ -134,7 +134,7 @@ public class SocketClientActivity extends Activity {
         
         public void sendMessage(){        	
         	if(socket != null && !socket.isClosed()){
-        		out.write(unit + reqSize + "$\r\n");
+        		out.write(String.valueOf(unit) + reqSize + "$");
         		int i = sendSize, len;
         		while(i > 0){
         			len = i > sendBuffer.length ? sendBuffer.length:i;
