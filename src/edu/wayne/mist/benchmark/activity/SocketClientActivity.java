@@ -2,6 +2,7 @@ package edu.wayne.mist.benchmark.activity;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
@@ -27,12 +28,16 @@ public class SocketClientActivity extends Activity {
 	private int sended = 0;
 	
 	private ClientThread client = null;
-	private String sendMsg = "";
+	private int sendSize = 0;
+	private int reqSize = 0;
+	private char unit = 'B'; //B:byte, K: kb, M:mb
 	
 	private EditText serverText, portText, periodText, sizeText, reqSizeText, timesText;
 	private Button sockButton, stopButton;
     private Handler eventHandler = new Handler();
-	private RadioButton byteRadio, kbRadio;
+	private RadioButton byteRadio, kbRadio, mbRadio;
+	private char[] buffer = new char[4096];
+	private char[] sendBuffer = new char[4096];
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +52,8 @@ public class SocketClientActivity extends Activity {
 		sockButton = (Button)this.findViewById(R.id.SocketButton);
 		stopButton = (Button)this.findViewById(R.id.stopButton);
 		byteRadio = (RadioButton)this.findViewById(R.id.byteRadio);; 
-		kbRadio = (RadioButton)this.findViewById(R.id.kbRadio);;
+		kbRadio = (RadioButton)this.findViewById(R.id.kbRadio);
+		mbRadio = (RadioButton)this.findViewById(R.id.mbRadio);
 		sockButton.setOnClickListener(new View.OnClickListener() {			
 			@Override
 			public void onClick(View v) {
@@ -55,20 +61,17 @@ public class SocketClientActivity extends Activity {
 				serverPort = Integer.valueOf(portText.getEditableText().toString());
 				period = Integer.valueOf(periodText.getEditableText().toString());
 				times = Integer.valueOf(timesText.getEditableText().toString());
-				int size = Integer.valueOf(sizeText.getEditableText().toString());
-				int reqSize = Integer.valueOf(reqSizeText.getEditableText().toString());
+				sendSize = Integer.valueOf(sizeText.getEditableText().toString());
+				reqSize = Integer.valueOf(reqSizeText.getEditableText().toString());
 				
 				if(kbRadio.isChecked()){
-					size *= 1024;
-					reqSize *= 1024;
+					unit = 'K';
+				}else if(mbRadio.isChecked()){
+					unit = 'M';
+				}else{
+					unit = 'B';
 				}
-				
-				StringBuffer buf = new StringBuffer();
-				buf.append(reqSize).append(':');
-				for(int i = 0; i < size; i++)
-					buf.append('S');
-				
-				sendMsg = buf.toString();
+			
 				sended = 0;
 				state = true;
 				sockButton.setText("Sending");
@@ -83,7 +86,9 @@ public class SocketClientActivity extends Activity {
 				sockButton.setText("Done");
 			}
 		});
-		client = new ClientThread();
+		
+		for(int i = 0; i < sendBuffer.length; i++)
+			sendBuffer[i] = 'S';
 	}
 
 	@Override
@@ -114,15 +119,10 @@ public class SocketClientActivity extends Activity {
                 in = new BufferedReader(new InputStreamReader(socket.getInputStream()));                
             	out = new PrintWriter(new BufferedWriter(
 		                    new OutputStreamWriter(socket.getOutputStream())),
-	                    true);  
+	                    true);
             	
-            	while(socket.isConnected()){
-            		if(in.ready()){
-            			String msg = in.readLine();
-            			Log.i("Socket", "received: " + msg.length());
-            		}
-            		
-            		Thread.sleep(100);
+            	if(socket.isConnected()){
+            		readMessage();
             	}
             	
             } catch (Exception e1) {
@@ -132,11 +132,25 @@ public class SocketClientActivity extends Activity {
             }
         }
         
-        public void sendMessage(String msg){        	
+        public void sendMessage(){        	
         	if(socket != null && !socket.isClosed()){
-        		out.write(msg + "\r\n");
+        		out.write(unit + reqSize + "$\r\n");
+        		int i = sendSize, len;
+        		while(i > 0){
+        			len = i > sendBuffer.length ? sendBuffer.length:i;
+        			out.write(sendBuffer, 0, len);
+        			i -= len;
+        		}
+        		out.write("\r\n");
         		out.flush();
-        		Log.i("Socket", "Sent: " + msg);
+        		Log.i("Socket", "Sent: " + sendSize);
+        	}
+        }
+        
+        private void readMessage() throws IOException{
+        	int len;
+        	while((len = in.read(buffer)) > 0){
+            	Log.i("Socket", "received: " + len);
         	}
         }
         
@@ -161,17 +175,27 @@ public class SocketClientActivity extends Activity {
 	
     private boolean state = false;
     private Runnable eventPeriodicTask = new Runnable() {
-        public void run() {    
-        	if(client.connected() == false){
-        		client.start();
+        public void run() { 
+        	if(client == null || client.connected() == false){
+        		if(client != null)
+        			client.close();
+        		client = null;        		
         		try {
 					Thread.sleep(3000);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
+        		client = new ClientThread();
+        		client.start();
+
+        		try {
+					Thread.sleep(3000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}       		
         	}        	
             
-        	client.sendMessage(sendMsg);
+        	client.sendMessage();
             sended++;
             if(sended < times && state){
             	eventHandler.postDelayed(eventPeriodicTask, period * 1000);
