@@ -66,8 +66,10 @@ public class SocketClientActivity extends Activity {
 				
 				if(kbRadio.isChecked()){
 					unit = 'K';
+					sendSize *= 1024;
 				}else if(mbRadio.isChecked()){
 					unit = 'M';
+					sendSize *= (1024 * 1024);
 				}else{
 					unit = 'B';
 				}
